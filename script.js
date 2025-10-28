@@ -5,6 +5,7 @@ const paddleWidth = 10;
 const paddleHeight = 100;
 const ballSize = 10;
 const speed = 6;
+let difficulty=3;
 
 let leftPaddle = {
   x: 10,
@@ -21,9 +22,12 @@ let rightPaddle = {
 let ball = {
   x: canvas.width / 2,
   y: canvas.height / 2,
-  dx: speed,
-  dy: speed,
+  dx: speed+difficulty,
+  dy: speed+difficulty,
 };
+
+let scoreAI=0;
+let scorePlayer=0;
 
 function movePaddles() {
   leftPaddle.y += leftPaddle.dy;
@@ -56,6 +60,16 @@ function moveAI() {
   
 }
 
+function scoreUpdater(){
+  if (ball.x >= canvas.width) {
+    scoreAI+=1;
+    ball.dx*=-1;
+  }
+  if (ball.x <= 0) {
+    scorePlayer+=1;
+    ball.dx*=-1;
+  }
+}
 
 function moveBall() {
   ball.x += ball.dx;
@@ -91,6 +105,19 @@ function draw() {
   // Draw ball
   ctx.fillRect(ball.x, ball.y, ballSize, ballSize);
   // TODO: Draw scores
+  ctx.font="bold 36px 'Press Start 2P', Arial"; 
+  ctx.fillText(scorePlayer,canvas.width/2 +50,50);
+  ctx.fillText(scoreAI,canvas.width/2 -71,50);
+
+  // Drawing line to seperate teams
+  ctx.beginPath();
+  ctx.lineWidth=4;
+  ctx.moveTo(canvas.width / 2, 0);
+  ctx.lineTo(canvas.width / 2, canvas.height);
+  ctx.strokeStyle = "white";
+  ctx.setLineDash([20, 10]); 
+  ctx.stroke();
+  ctx.setLineDash([4]);
 }
 
 document.addEventListener("keydown", (e) => {
@@ -112,6 +139,7 @@ function update() {
   movePaddles();
   moveAI();
   moveBall();
+  scoreUpdater();
   draw();
   requestAnimationFrame(update);
 }

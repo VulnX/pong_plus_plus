@@ -22,3 +22,10 @@ canvas {
   border: 2px dashed white;
   padding: 30px;
 }
+
+
+
+#scoreboard {
+  border: 1px solid white;
+  padding: 10px;
+}
