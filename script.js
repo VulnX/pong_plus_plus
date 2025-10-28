@@ -21,11 +21,30 @@ let rightPaddle = {
 let ball = {
   x: canvas.width / 2,
   y: canvas.height / 2,
-  dx: 2,
-  dy: 2,
+  dx: speed,
+  dy: speed,
 };
 
 function movePaddles() {
+  leftPaddle.y += leftPaddle.dy;
+  rightPaddle.y += rightPaddle.dy;
+
+  // Keep paddles in canvas limit
+  // leftPaddle.y = Math.max(
+  //   Math.min(leftPaddle.y, canvas.height - paddleHeight),
+  //   0
+  // );
+  rightPaddle.y = Math.max(
+    Math.min(rightPaddle.y, canvas.height - paddleHeight),
+    0
+  );
+}
+
+function moveAI() {
+  let direction=leftPaddle.y-ball.y
+  if(direction>0) leftPaddle.y -= speed;
+   if(direction<0) leftPaddle.y += speed;
+
   leftPaddle.y += leftPaddle.dy;
   rightPaddle.y += rightPaddle.dy;
 
@@ -34,11 +53,9 @@ function movePaddles() {
     Math.min(leftPaddle.y, canvas.height - paddleHeight),
     0
   );
-  rightPaddle.y = Math.max(
-    Math.min(rightPaddle.y, canvas.height - paddleHeight),
-    0
-  );
+  
 }
+
 
 function moveBall() {
   ball.x += ball.dx;
@@ -77,8 +94,9 @@ function draw() {
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "w") leftPaddle.dy = -speed;
-  if (e.key === "s") leftPaddle.dy = speed;
+  // Keeping these for player two in 2p vs 2ai pong
+  // if (e.key === "w") leftPaddle.dy = -speed;
+  // if (e.key === "s") leftPaddle.dy = speed;
 
   if (e.key === "ArrowUp") rightPaddle.dy = -speed;
   if (e.key === "ArrowDown") rightPaddle.dy = speed;
@@ -92,6 +110,7 @@ document.addEventListener("keyup", (e) => {
 
 function update() {
   movePaddles();
+  moveAI();
   moveBall();
   draw();
   requestAnimationFrame(update);
