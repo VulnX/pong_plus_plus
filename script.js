@@ -28,6 +28,7 @@ let ball = {
 
 let scoreAI=0;
 let scorePlayer=0;
+let updater=-1;
 
 function movePaddles() {
   leftPaddle.y += leftPaddle.dy;
@@ -61,13 +62,41 @@ function moveAI() {
 }
 
 function scoreUpdater(){
-  if (ball.x >= canvas.width) {
+  if (ball.x >= canvas.width && updater!=1) {
+    let i=0;
+    while(i<100000)
+    {
+      ball.dx=0;
+      ball.dy=0;
+      i++;
+    }
+    //recentering ball after scoring
+    ball.y=canvas.height/2;  
+    ball.x=canvas.width/2;
+    //setting the speed of ball after setting it to zero
+    ball.dx=speed;
+    ball.dy=speed;
     scoreAI+=1;
-    ball.dx*=-1;
+
+
   }
-  if (ball.x <= 0) {
+  if (ball.x <= 0 && updater!=0) {
+    let i=0;
+    while(i<100000)
+    {
+      ball.dx=0;
+      ball.dy=0;
+      i++;
+    }
+    //recentering ball after scoring
+    ball.y=canvas.height/2;
+    ball.x=canvas.width/2;
+    //setting the speed of ball after setting it to zero
+    ball.dx=speed;
+    ball.dy=speed;
     scorePlayer+=1;
-    ball.dx*=-1;
+
+    
   }
 }
 
