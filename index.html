@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pong++</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="menu" class="menu">
+      <h1>pong++</h1>
+      <p>Select a mode to start playing</p>
+      <div class="menu-buttons">
+        <button data-mode="solo">1 vs AI</button>
+        <button data-mode="duo">2 vs 2 AI</button>
+      </div>
+    </div>
+    <div id="gameArea" class="hidden">
+      <h1>pong++</h1>
+      <canvas id="gameCanvas" width="800" height="500"></canvas>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

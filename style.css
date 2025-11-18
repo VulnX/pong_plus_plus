@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+h1 {
+  color: white;
+  font-size: 3rem;
+}
+
+canvas {
+  border: 2px dashed white;
+  padding: 30px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.menu-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.menu-buttons button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 0.8rem 1.4rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.menu-buttons button:hover {
+  background: #ddd;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+#scoreboard {
+  border: 1px solid white;
+  padding: 10px;
+}
